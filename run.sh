@@ -2,7 +2,7 @@
 
 /usr/sbin/sshd -D &
 
-$HADOOP_PREFIX/sbin/start-dfs.sh
+$HADOOP_PREFIX/sbin/hadoop-daemon.sh start namenode
 
 $HADOOP_PREFIX/sbin/start-yarn.sh
 

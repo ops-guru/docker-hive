@@ -15,8 +15,8 @@ RUN yum update -y && \
 RUN ssh-keygen -A
 RUN ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 RUN cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-RUN chmod 0600 ~/.ssh/authorized_keys
 COPY conf/ssh_config /root/.ssh/config
+RUN chmod 0600 ~/.ssh/authorized_keys ~/.ssh/config
 
 # install java
 RUN yum install java-1.8.0-openjdk -y
@@ -49,10 +49,11 @@ COPY conf/yarn-site.xml /usr/local/hadoop/etc/hadoop/yarn-site.xml
 RUN wget http://apache.cp.if.ua/hive/hive-2.3.5/apache-hive-2.3.5-bin.tar.gz
 RUN tar -xzf apache-hive-2.3.5-bin.tar.gz -C /usr/local/hadoop/
 RUN cd /usr/local/hadoop && ln -s ./apache-hive-2.3.5-bin hive
-ENV HIVE_HOME=$HADOOP_HOME/hive
+ENV HIVE_HOME $HADOOP_HOME/hive
+
+RUN chown -R root:root /usr/local/hadoop-2.8.5
 
 RUN $HADOOP_PREFIX/bin/hdfs namenode -format
-
 COPY dfs.sh .
 RUN ./dfs.sh
 
