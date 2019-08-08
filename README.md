@@ -22,14 +22,36 @@ Create image
 docker build . -t amzn-hive-image
 ```
 
-Run container
-
-```
-docker run -d -p 10000:10000 amzn-hive-image
-```
-
 ## DockerHub
+
+Image available on DockerHub
 
 ```
 docker run -d opsguruhub/docker-hive:0.0.1
+```
+
+## Test
+
+Run image
+
+```
+CONTAINER_ID=$(docker run -d opsguruhub/docker-hive)
+```
+
+Start beeline client and connect to hive
+
+```
+docker exec -it $CONTAINER_ID /usr/local/hadoop/hive/bin/beeline -u jdbc:hive2://localhost:10000 -n "" -p ""
+```
+
+Now you should be able to query
+
+```
+0: jdbc:hive2://localhost:10000> show databases;
++----------------+
+| database_name  |
++----------------+
+| default        |
++----------------+
+1 row selected (1.921 seconds)
 ```
