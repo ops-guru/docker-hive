@@ -38,6 +38,12 @@ Run image
 CONTAINER_ID=$(docker run -d opsguruhub/docker-hive)
 ```
 
+Wait for services started
+
+```
+docker logs $CONTAINER_ID
+```
+
 Start beeline client and connect to hive
 
 ```
