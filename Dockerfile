@@ -9,7 +9,8 @@ RUN yum update -y && \
     tar \
     curl \
     wget \
-    net-tools
+    net-tools \
+    nano
 
 # setup ssh
 RUN ssh-keygen -A
