@@ -60,7 +60,7 @@ docker logs local-hive
 ```
 
 Or you can open bash:
-docker exec -it local-hive bash
+docker exec `-it` local-hive bash
 
 Start beeline client and connect to hive
 
