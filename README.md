@@ -43,7 +43,7 @@ docker pull opsguruhub/docker-hive
 
 ## Test
 
-Enusre that you don't have running container
+`Enusre that you don't have running container
 
 docker container stop local-hive; docker rm local-hive; 
 
